@@ -1,9 +1,14 @@
 import json
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--anno_path",help="provide path for the coco .json anno file")
+args = parser.parse_args()
 
 # path for annotations in the coco dataset
 anno_path = '/media/mash-compute/My Passport/Andromeda/dataset/object_det/ms_coco/ms_coco_2017/annotations_trainval2017/annotations/instances_val2017.json'
 
-
+# open the .json file
 with open(anno_path) as json_file:
     json_file = json_file.read()
     data = json.loads(json_file)
