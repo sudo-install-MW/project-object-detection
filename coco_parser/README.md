@@ -8,4 +8,5 @@ The coco dataset is annotated using .json file format which hosts five key value
 'info':{'date_created': '2017/09/01', 'year': 2017, 'url': 'http://cocodataset.org', 'contributor': 'COCO Consortium', 'version': '1.0', 'description': 'COCO 2017 Dataset'}
 'liscense':[{'url': 'http://creativecommons.org/licenses/by-nc-sa/2.0/', 'id': 1, 'name': 'Attribution-NonCommercial-ShareAlike License'}]
 ```
-##.json to yolo format conversion
+The category and image id information is available <a href="https://github.com/sudo-install-MW/project-object-detection/blob/data-processing/coco_parser/utils/categories.txt">here</a>
+## .json to yolo format conversion
