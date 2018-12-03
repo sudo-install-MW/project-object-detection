@@ -21,5 +21,4 @@ for i in range(len(annotations)):
     if search_dict['image_id'] == 289343:
         one_image.append(search_dict)
 
-#print(search_dict)
-        
+print(search_dict)
