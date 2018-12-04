@@ -1,22 +1,7 @@
-import json
-import argparse
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--anno_path", help="provide path for the coco .json anno file")
-parser.add_argument("--image_path", help="path for images from the coco dataset")
-args = parser.parse_args()
-
-# path for annotations in the coco dataset
-anno_path = '/media/maheshwaran/My Passport/Andromeda/dataset/object_det/ms_coco/ms_coco_2017/annotations_trainval2017/annotations/instances_val2017.json'
-
-# open the .json file
-with open(anno_path) as json_file:
-    json_file = json_file.read()
-    data = json.loads(json_file)
-
 anno_dict = dict()
 img_spec = dict()
 cat_dict = {1:'person', 3:'car'}
+
 
 # loop creates a dictionary with image id as key and file_name and h, w as inner dict
 for image_spec in data['images']:
@@ -51,4 +36,3 @@ for anno in data['annotations']:
             anno_dict[anno['image_id']].append(anno_buff_dict)
 
 
-print(anno_dict)
