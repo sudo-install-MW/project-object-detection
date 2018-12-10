@@ -2,6 +2,7 @@ import tensorflow as tf
 from object_detection.utils import dataset_util
 import cv2
 import os
+import time
 
 
 def create_tf_example(tf_rec_dict):
@@ -17,7 +18,21 @@ def create_tf_example(tf_rec_dict):
     # bbox to rel logic goes here
     # TODO
     # END TODO
-    print(tf_rec_dict)
+
+    # test plot bbox
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    cv2.putText(encoded_image_data, classes_text,
+                (int(tf_rec_dict['bbox'][0]), int(tf_rec_dict['bbox'][1])),
+                font, 2, (0, 255, 0), 2, cv2.LINE_AA)
+
+    cv2.rectangle(encoded_image_data,(int(tf_rec_dict['bbox'][0]), int(tf_rec_dict['bbox'][1])),
+                 (int(tf_rec_dict['bbox'][0] + tf_rec_dict['bbox'][2]),
+                  int(tf_rec_dict['bbox'][1] + tf_rec_dict['bbox'][3])), (255, 0, 0), 2)
+
+    cv2.imshow('test window', encoded_image_data)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    #print(tf_rec_dict)
 
 
 
@@ -56,6 +71,7 @@ def create_tf_record(img_spec=None,img_anno=None, save_path=None, img_source_pat
     for images, annotations in img_anno.items():
         # iterate over every bbox for each image if image has multiple bbox
         for n_annotations in annotations:
+
             tf_rec_dict = dict()
             img_src_path = os.path.join(img_source_path, img_spec[images]['file_name'])
             tf_rec_dict['encoded_image_data'] = cv2.imread(img_src_path)
