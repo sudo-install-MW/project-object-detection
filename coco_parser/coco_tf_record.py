@@ -11,7 +11,7 @@ args = parser.parse_args()
 # path for annotations in the coco dataset
 anno_path = '/media/mash-compute/My Passport/Andromeda/dataset/object_det/ms_coco/ms_coco_2017/' \
             'annotations_trainval2017/annotations/instances_val2017.json'
-tf_record_save_path = '/media/mash-compute/My Passport/Andromeda/dataset/object_det/ms_coco/ms_coco_2017'
+tf_record_save_path = '/media/mash-compute/My Passport/Andromeda/dataset/object_det/ms_coco/ms_coco_2017/cocoval.tfrecord'
 img_source = '/media/mash-compute/My Passport/Andromeda/dataset/object_det/ms_coco/ms_coco_2017/val2017'
 
 # add categories to customize dataset

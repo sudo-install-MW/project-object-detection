@@ -6,85 +6,77 @@ import time
 
 
 def create_tf_example(tf_rec_dict):
-    # TODO(user): Populate the following variables from your example.
-    height = tf_rec_dict['height'] # Image height
-    width = tf_rec_dict['width'] # Image width
-    filename = tf_rec_dict['filename'] # Filename of the image. Empty if image is not from file
-    encoded_image_data = tf_rec_dict['encoded_image_data'] # Encoded image bytes
-    image_format = tf_rec_dict['image_format'] # b'jpeg' or b'png'
-    classes_text = tf_rec_dict['classes_text']  # List of string class name of bounding box (1 per box)
-    classes = tf_rec_dict['classes']  # List of integer class id of bounding box (1 per box)
 
-    # bbox to rel logic goes here
-    # TODO
-    # END TODO
-
-    # test plot bbox
-    font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(encoded_image_data, classes_text,
-                (int(tf_rec_dict['bbox'][0]), int(tf_rec_dict['bbox'][1])),
-                font, 2, (0, 255, 0), 2, cv2.LINE_AA)
-
-    cv2.rectangle(encoded_image_data,(int(tf_rec_dict['bbox'][0]), int(tf_rec_dict['bbox'][1])),
-                 (int(tf_rec_dict['bbox'][0] + tf_rec_dict['bbox'][2]),
-                  int(tf_rec_dict['bbox'][1] + tf_rec_dict['bbox'][3])), (255, 0, 0), 2)
-
-    cv2.imshow('test window', encoded_image_data)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    #print(tf_rec_dict)
-
-
-
-    # xmins = [] # List of normalized left x coordinates in bounding box (1 per box)
-    # xmaxs = [] # List of normalized right x coordinates in bounding box
-    #          # (1 per box)
-    # ymins = [] # List of normalized top y coordinates in bounding box (1 per box)
-    # ymaxs = [] # List of normalized bottom y coordinates in bounding box
-    #          # (1 per box)
-    #
-    #
-    # tf_example = tf.train.Example(features=tf.train.Features(feature={
-    #   'image/height': dataset_util.int64_feature(height),
-    #   'image/width': dataset_util.int64_feature(width),
-    #   'image/filename': dataset_util.bytes_feature(filename),
-    #   'image/source_id': dataset_util.bytes_feature(filename),
-    #   'image/encoded': dataset_util.bytes_feature(encoded_image_data),
-    #   'image/format': dataset_util.bytes_feature(image_format),
-    #   'image/object/bbox/xmin': dataset_util.float_list_feature(xmins),
-    #   'image/object/bbox/xmax': dataset_util.float_list_feature(xmaxs),
-    #   'image/object/bbox/ymin': dataset_util.float_list_feature(ymins),
-    #   'image/object/bbox/ymax': dataset_util.float_list_feature(ymaxs),
-    #   'image/object/class/text': dataset_util.bytes_list_feature(classes_text),
-    #   'image/object/class/label': dataset_util.int64_list_feature(classes),
-    # }))
-
-    tf_example = None
+    tf_example = tf.train.Example(features=tf.train.Features(feature={
+      'image/height': dataset_util.int64_feature(tf_rec_dict['height']),
+      'image/width': dataset_util.int64_feature(tf_rec_dict['width']),
+      'image/filename': dataset_util.bytes_feature(tf_rec_dict['filename']),
+      'image/source_id': dataset_util.bytes_feature(tf_rec_dict['filename']),
+      'image/encoded': dataset_util.bytes_feature(tf_rec_dict['encoded_image_data']),
+      'image/format': dataset_util.bytes_feature(tf_rec_dict['image_format']),
+      'image/object/bbox/xmin': dataset_util.float_list_feature(tf_rec_dict['xmins']),
+      'image/object/bbox/xmax': dataset_util.float_list_feature(tf_rec_dict['xmaxs']),
+      'image/object/bbox/ymin': dataset_util.float_list_feature(tf_rec_dict['ymins']),
+      'image/object/bbox/ymax': dataset_util.float_list_feature(tf_rec_dict['ymaxs']),
+      'image/object/class/text': dataset_util.bytes_list_feature(tf_rec_dict['classes_text']),
+      'image/object/class/label': dataset_util.int64_list_feature(tf_rec_dict['classes']),
+    }))
 
     return tf_example
 
 
 def create_tf_record(img_spec=None,img_anno=None, save_path=None, img_source_path=None,cat_dict=None):
 
-    #writer = tf.python_io.TFRecordWriter(save_path)
+    writer = tf.python_io.TFRecordWriter(save_path)
     # iterate through every image in the dataset
     for images, annotations in img_anno.items():
         # iterate over every bbox for each image if image has multiple bbox
+        tf_rec_dict = dict()
+        img_src_path = os.path.join(img_source_path, img_spec[images]['file_name'])
+
+        with tf.gfile.GFile(img_src_path, 'rb') as fid:
+            tf_rec_dict['encoded_image_data'] = fid.read()
+        tf_rec_dict['xmins'] = []
+        tf_rec_dict['ymins'] = []
+        tf_rec_dict['xmaxs'] = []
+        tf_rec_dict['ymaxs'] = []
+        tf_rec_dict['height'] = img_spec[images]['height']  # Image height
+        tf_rec_dict['width'] = img_spec[images]['width']  # Image width
+        tf_rec_dict['image_format'] = 'jpeg'.encode()
+        tf_rec_dict['filename'] = img_spec[images]['file_name'].encode() # Filename of the image. Empty if image is not from file
+        tf_rec_dict['classes_text'] = []
+        tf_rec_dict['classes'] = []
+
         for n_annotations in annotations:
 
-            tf_rec_dict = dict()
-            img_src_path = os.path.join(img_source_path, img_spec[images]['file_name'])
-            tf_rec_dict['encoded_image_data'] = cv2.imread(img_src_path)
-            tf_rec_dict['height'] = img_spec[images]['height']  # Image height
-            tf_rec_dict['width'] = img_spec[images]['width']  # Image width
-            tf_rec_dict['filename'] = img_spec[images]['file_name']  # Filename of the image. Empty if image is not from file
-            tf_rec_dict['image_format'] = 'jpeg'
-            tf_rec_dict['bbox'] = n_annotations['bbox']
-            tf_rec_dict['classes_text'] = cat_dict[n_annotations['category_id']]
-            tf_rec_dict['classes'] = n_annotations['category_id']
+            tf_rec_dict['xmins'].append(n_annotations['bbox'][0] / img_spec[images]['width'])
+            tf_rec_dict['ymins'].append(n_annotations['bbox'][1] / img_spec[images]['height'])
+            tf_rec_dict['xmaxs'].append((n_annotations['bbox'][0] + n_annotations['bbox'][2]) / img_spec[images]['width'])
+            tf_rec_dict['ymaxs'].append((n_annotations['bbox'][1] + n_annotations['bbox'][3]) / img_spec[images]['height'])
 
-            tf_example = create_tf_example(tf_rec_dict)
-            #writer.write(tf_example.SerializeToString())
+            tf_rec_dict['classes_text'].append(cat_dict[n_annotations['category_id']].encode())
+            tf_rec_dict['classes'].append(n_annotations['category_id'])
 
-    #writer.close()
+        #test_plot(img_src_path, tf_rec_dict)
+        tf_example = create_tf_example(tf_rec_dict)
+        writer.write(tf_example.SerializeToString())
 
+    writer.close()
+
+def test_plot(img_src_path, tf_rec_dict):
+
+    img = cv2.imread(img_src_path)
+    # test plot bbox
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    cv2.putText(img, 'test',
+                (int(tf_rec_dict['bbox'][0]), int(tf_rec_dict['bbox'][1])),
+                font, 2, (0, 255, 0), 2, cv2.LINE_AA)
+
+    cv2.rectangle(img, (int(tf_rec_dict['bbox'][0]), int(tf_rec_dict['bbox'][1])),
+                  (int(tf_rec_dict['bbox'][0] + tf_rec_dict['bbox'][2]),
+                   int(tf_rec_dict['bbox'][1] + tf_rec_dict['bbox'][3])), (255, 0, 0), 2)
+
+
+    cv2.imshow(tf_rec_dict[''], img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
