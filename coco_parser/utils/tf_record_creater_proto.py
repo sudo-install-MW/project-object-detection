@@ -2,8 +2,6 @@ import tensorflow as tf
 from object_detection.utils import dataset_util
 import cv2
 import os
-import time
-
 
 def create_tf_example(tf_rec_dict):
 
@@ -28,14 +26,20 @@ def create_tf_example(tf_rec_dict):
 def create_tf_record(img_spec=None,img_anno=None, save_path=None, img_source_path=None,cat_dict=None):
 
     writer = tf.python_io.TFRecordWriter(save_path)
+    total_images = os.listdir(img_source_path)
+
     # iterate through every image in the dataset
+    count = 0
     for images, annotations in img_anno.items():
+        if count % 100 == 0:
+            print("created tf record for {} images out of {} total images".format(count, len(total_images)))
         # iterate over every bbox for each image if image has multiple bbox
         tf_rec_dict = dict()
         img_src_path = os.path.join(img_source_path, img_spec[images]['file_name'])
 
         with tf.gfile.GFile(img_src_path, 'rb') as fid:
             tf_rec_dict['encoded_image_data'] = fid.read()
+
         tf_rec_dict['xmins'] = []
         tf_rec_dict['ymins'] = []
         tf_rec_dict['xmaxs'] = []
@@ -60,6 +64,7 @@ def create_tf_record(img_spec=None,img_anno=None, save_path=None, img_source_pat
         #test_plot(img_src_path, tf_rec_dict)
         tf_example = create_tf_example(tf_rec_dict)
         writer.write(tf_example.SerializeToString())
+        count += 1
 
     writer.close()
 
