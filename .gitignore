@@ -19,3 +19,7 @@ bin-release/
 
 .vcode*
 .idea*
+.vscode/
+coco_parser/__pycache__/
+coco_parser/utils/__pycache__/
+

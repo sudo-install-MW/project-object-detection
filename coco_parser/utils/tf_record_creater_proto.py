@@ -24,15 +24,21 @@ def create_tf_example(tf_rec_dict):
 
 
 def create_tf_record(img_spec=None,img_anno=None, save_path=None, img_source_path=None,cat_dict=None):
-
+    """
+    creates tf_record
+    :param img_spec: dictionary containing image specifications
+    :param img_anno: dictionary containing image annotations
+    :param save_path: path to save tfrecord file
+    :param img_source_path: source path for the image
+    :param cat_dict: dictionary containing category required for dataset extraction
+    :return: None
+    """
     writer = tf.python_io.TFRecordWriter(save_path)
-    total_images = os.listdir(img_source_path)
-
     # iterate through every image in the dataset
     count = 0
     for images, annotations in img_anno.items():
         if count % 100 == 0:
-            print("created tf record for {} images out of {} total images".format(count, len(total_images)))
+            print("created tf record for {} images out of {} total images".format(count, len(img_anno.items())))
         # iterate over every bbox for each image if image has multiple bbox
         tf_rec_dict = dict()
         img_src_path = os.path.join(img_source_path, img_spec[images]['file_name'])
@@ -69,6 +75,32 @@ def create_tf_record(img_spec=None,img_anno=None, save_path=None, img_source_pat
     writer.close()
 
 def test_plot(img_src_path, tf_rec_dict):
+
+    cap = cv2.VideoCapture(0)
+
+    # Define the codec and create VideoWriter object
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640, 480))
+
+    while (cap.isOpened()):
+        ret, frame = cap.read()
+        if ret == True:
+            frame = cv2.flip(frame, 0)
+
+            # write the flipped frame
+            out.write(frame)
+
+            cv2.imshow('frame', frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        else:
+            break
+
+    # Release everything if job is finished
+    cap.release()
+    out.release()
+    cv2.destroyAllWindows()
+
 
     img = cv2.imread(img_src_path)
     # test plot bbox
