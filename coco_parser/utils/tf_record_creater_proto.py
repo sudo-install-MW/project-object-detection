@@ -68,6 +68,7 @@ def create_tf_record(img_spec=None,img_anno=None, save_path=None, img_source_pat
             tf_rec_dict['classes'].append(n_annotations['category_id'])
 
         #test_plot(img_src_path, tf_rec_dict)
+        print(tf_rec_dict)
         tf_example = create_tf_example(tf_rec_dict)
         writer.write(tf_example.SerializeToString())
         count += 1

@@ -22,4 +22,7 @@ bin-release/
 .vscode/
 coco_parser/__pycache__/
 coco_parser/utils/__pycache__/
-
+object_det_models/Bahamas Scene Casino Royale HD.mp4
+downloaded_models/*
+object_det_models/ssdlite_mobilenet_v2_coco_2_class_150_84/checkpoints/*
+object_det_models/ssdlite_mobilenet_v2_coco_2_class_150_84/frozen_model/*

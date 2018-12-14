@@ -1,0 +1,66 @@
+2018-12-14 00:00:05.641941: I tensorflow/core/util/stat_summarizer.cc:85] 	             [Node type]	  [count]	  [avg ms]	    [avg %]	    [cdf %]	  [mem KB]	[times called]
+2018-12-14 00:00:05.641950: I tensorflow/core/util/stat_summarizer.cc:85] 	            _FusedConv2D	       55	     8.711	    46.205%	    46.205%	  4705.048	       55
+2018-12-14 00:00:05.641959: I tensorflow/core/util/stat_summarizer.cc:85] 	   DepthwiseConv2dNative	       33	     4.481	    23.768%	    69.973%	  3528.512	       33
+2018-12-14 00:00:05.641968: I tensorflow/core/util/stat_summarizer.cc:85] 	                     Mul	       51	     1.159	     6.148%	    76.121%	     1.324	       51
+2018-12-14 00:00:05.641977: I tensorflow/core/util/stat_summarizer.cc:85] 	                     Add	       55	     1.018	     5.400%	    81.520%	     2.656	       55
+2018-12-14 00:00:05.641987: I tensorflow/core/util/stat_summarizer.cc:85] 	                   Relu6	       59	     0.533	     2.827%	    84.347%	     0.000	       59
+2018-12-14 00:00:05.641997: I tensorflow/core/util/stat_summarizer.cc:85] 	                   Const	      408	     0.498	     2.641%	    86.989%	     0.000	      408
+2018-12-14 00:00:05.642006: I tensorflow/core/util/stat_summarizer.cc:85] 	                    Cast	        6	     0.364	     1.931%	    88.920%	   603.928	        6
+2018-12-14 00:00:05.642015: I tensorflow/core/util/stat_summarizer.cc:85] 	    TensorArrayScatterV3	        5	     0.187	     0.992%	    89.911%	   610.052	        5
+2018-12-14 00:00:05.642024: I tensorflow/core/util/stat_summarizer.cc:85] 	           TensorArrayV3	       11	     0.142	     0.753%	    90.665%	     2.244	       11
+2018-12-14 00:00:05.642033: I tensorflow/core/util/stat_summarizer.cc:85] 	                   Enter	       26	     0.141	     0.748%	    91.412%	     0.000	       26
+2018-12-14 00:00:05.642041: I tensorflow/core/util/stat_summarizer.cc:85] 	            StridedSlice	       29	     0.133	     0.705%	    92.118%	     0.088	       29
+2018-12-14 00:00:05.642051: I tensorflow/core/util/stat_summarizer.cc:85] 	                    Pack	       24	     0.124	     0.658%	    92.776%	     5.564	       24
+2018-12-14 00:00:05.642059: I tensorflow/core/util/stat_summarizer.cc:85] 	          ResizeBilinear	        1	     0.120	     0.637%	    93.412%	   151.200	        1
+2018-12-14 00:00:05.642070: I tensorflow/core/util/stat_summarizer.cc:85] 	                GatherV2	       19	     0.099	     0.525%	    93.937%	    20.800	       19
+2018-12-14 00:00:05.642079: I tensorflow/core/util/stat_summarizer.cc:85] 	                   Merge	       10	     0.085	     0.451%	    94.388%	     0.040	       20
+2018-12-14 00:00:05.642088: I tensorflow/core/util/stat_summarizer.cc:85] 	                    NoOp	        1	     0.079	     0.419%	    94.807%	     0.000	        1
+2018-12-14 00:00:05.642097: I tensorflow/core/util/stat_summarizer.cc:85] 	                     Sub	       19	     0.074	     0.393%	    95.200%	     2.648	       19
+2018-12-14 00:00:05.642105: I tensorflow/core/util/stat_summarizer.cc:85] 	     TensorArrayGatherV3	        6	     0.071	     0.377%	    95.576%	   153.616	        6
+2018-12-14 00:00:05.642115: I tensorflow/core/util/stat_summarizer.cc:85] 	                   Shape	       25	     0.071	     0.377%	    95.953%	     0.244	       25
+2018-12-14 00:00:05.642123: I tensorflow/core/util/stat_summarizer.cc:85] 	                 Reshape	       24	     0.057	     0.302%	    96.255%	     0.000	       24
+2018-12-14 00:00:05.642133: I tensorflow/core/util/stat_summarizer.cc:85] 	           NextIteration	       10	     0.055	     0.292%	    96.547%	     0.000	       10
+2018-12-14 00:00:05.642142: I tensorflow/core/util/stat_summarizer.cc:85] 	                   Slice	        8	     0.048	     0.255%	    96.802%	     5.280	        8
+2018-12-14 00:00:05.642151: I tensorflow/core/util/stat_summarizer.cc:85] 	                ConcatV2	        8	     0.048	     0.255%	    97.056%	    18.040	        8
+2018-12-14 00:00:05.642160: I tensorflow/core/util/stat_summarizer.cc:85] 	                  Unpack	        5	     0.043	     0.228%	    97.284%	    15.868	        5
+2018-12-14 00:00:05.642169: I tensorflow/core/util/stat_summarizer.cc:85] 	                   Split	        3	     0.043	     0.228%	    97.512%	     9.600	        3
+2018-12-14 00:00:05.642179: I tensorflow/core/util/stat_summarizer.cc:85] 	                    Less	        6	     0.042	     0.223%	    97.735%	     0.204	       10
+2018-12-14 00:00:05.642188: I tensorflow/core/util/stat_summarizer.cc:85] 	                  Switch	       10	     0.037	     0.196%	    97.931%	     0.000	       20
+2018-12-14 00:00:05.642197: I tensorflow/core/util/stat_summarizer.cc:85] 	                   Range	       14	     0.037	     0.196%	    98.128%	     0.844	       14
+2018-12-14 00:00:05.642208: I tensorflow/core/util/stat_summarizer.cc:85] 	               Transpose	        3	     0.026	     0.138%	    98.266%	    15.840	        3
+2018-12-14 00:00:05.642216: I tensorflow/core/util/stat_summarizer.cc:85] 	       TensorArrayReadV3	        5	     0.025	     0.133%	    98.398%	     0.000	        5
+2018-12-14 00:00:05.642226: I tensorflow/core/util/stat_summarizer.cc:85] 	      TensorArrayWriteV3	        6	     0.024	     0.127%	    98.525%	     0.000	        6
+2018-12-14 00:00:05.642236: I tensorflow/core/util/stat_summarizer.cc:85] 	                  Select	        8	     0.023	     0.122%	    98.647%	     0.000	        8
+2018-12-14 00:00:05.642244: I tensorflow/core/util/stat_summarizer.cc:85] 	                  TopKV2	        2	     0.022	     0.117%	    98.764%	     3.200	        2
+2018-12-14 00:00:05.642254: I tensorflow/core/util/stat_summarizer.cc:85] 	                 Greater	        6	     0.020	     0.106%	    98.870%	     0.205	        6
+2018-12-14 00:00:05.642264: I tensorflow/core/util/stat_summarizer.cc:85] 	       TensorArraySizeV3	        6	     0.019	     0.101%	    98.971%	     0.024	        6
+2018-12-14 00:00:05.642272: I tensorflow/core/util/stat_summarizer.cc:85] 	                 Minimum	        6	     0.019	     0.101%	    99.072%	     0.000	        6
+2018-12-14 00:00:05.642282: I tensorflow/core/util/stat_summarizer.cc:85] 	              ExpandDims	        7	     0.017	     0.090%	    99.162%	     0.000	        7
+2018-12-14 00:00:05.642292: I tensorflow/core/util/stat_summarizer.cc:85] 	                     Pad	        3	     0.015	     0.080%	    99.241%	     2.400	        3
+2018-12-14 00:00:05.642300: I tensorflow/core/util/stat_summarizer.cc:85] 	                    Fill	        5	     0.015	     0.080%	    99.321%	     2.004	        5
+2018-12-14 00:00:05.642309: I tensorflow/core/util/stat_summarizer.cc:85] 	     NonMaxSuppressionV3	        2	     0.013	     0.069%	    99.390%	     0.000	        2
+2018-12-14 00:00:05.642318: I tensorflow/core/util/stat_summarizer.cc:85] 	              LogicalAnd	        2	     0.013	     0.069%	    99.459%	     0.000	        4
+2018-12-14 00:00:05.642327: I tensorflow/core/util/stat_summarizer.cc:85] 	               ZerosLike	        4	     0.011	     0.058%	    99.517%	     0.804	        4
+2018-12-14 00:00:05.642338: I tensorflow/core/util/stat_summarizer.cc:85] 	                 Squeeze	        4	     0.011	     0.058%	    99.576%	     0.000	        4
+2018-12-14 00:00:05.642346: I tensorflow/core/util/stat_summarizer.cc:85] 	                 Maximum	        4	     0.010	     0.053%	    99.629%	     0.000	        4
+2018-12-14 00:00:05.642355: I tensorflow/core/util/stat_summarizer.cc:85] 	                Identity	        6	     0.008	     0.042%	    99.671%	     0.000	        6
+2018-12-14 00:00:05.642364: I tensorflow/core/util/stat_summarizer.cc:85] 	                 _Retval	        4	     0.007	     0.037%	    99.708%	     0.000	        4
+2018-12-14 00:00:05.642373: I tensorflow/core/util/stat_summarizer.cc:85] 	                LoopCond	        2	     0.006	     0.032%	    99.740%	     0.000	        4
+2018-12-14 00:00:05.642382: I tensorflow/core/util/stat_summarizer.cc:85] 	                     Exp	        2	     0.006	     0.032%	    99.772%	     0.000	        2
+2018-12-14 00:00:05.642391: I tensorflow/core/util/stat_summarizer.cc:85] 	                    Exit	        6	     0.006	     0.032%	    99.804%	     0.000	        6
+2018-12-14 00:00:05.642400: I tensorflow/core/util/stat_summarizer.cc:85] 	                   Where	        1	     0.005	     0.027%	    99.830%	     1.608	        1
+2018-12-14 00:00:05.642409: I tensorflow/core/util/stat_summarizer.cc:85] 	                     Sum	        1	     0.005	     0.027%	    99.857%	     0.004	        1
+2018-12-14 00:00:05.642417: I tensorflow/core/util/stat_summarizer.cc:85] 	                 Sigmoid	        1	     0.005	     0.027%	    99.883%	     0.000	        1
+2018-12-14 00:00:05.642427: I tensorflow/core/util/stat_summarizer.cc:85] 	                   Equal	        2	     0.005	     0.027%	    99.910%	     0.002	        2
+2018-12-14 00:00:05.642435: I tensorflow/core/util/stat_summarizer.cc:85] 	                  Assert	        3	     0.005	     0.027%	    99.936%	     0.000	        3
+2018-12-14 00:00:05.642445: I tensorflow/core/util/stat_summarizer.cc:85] 	                    Size	        2	     0.004	     0.021%	    99.958%	     0.008	        2
+2018-12-14 00:00:05.642453: I tensorflow/core/util/stat_summarizer.cc:85] 	            GreaterEqual	        1	     0.004	     0.021%	    99.979%	     0.200	        1
+2018-12-14 00:00:05.642463: I tensorflow/core/util/stat_summarizer.cc:85] 	                    _Arg	        1	     0.002	     0.011%	    99.989%	     0.000	        1
+2018-12-14 00:00:05.642473: I tensorflow/core/util/stat_summarizer.cc:85] 	                    Tile	        1	     0.002	     0.011%	   100.000%	     0.000	        1
+2018-12-14 00:00:05.642481: I tensorflow/core/util/stat_summarizer.cc:85]
+2018-12-14 00:00:05.642487: I tensorflow/core/util/stat_summarizer.cc:85] Timings (microseconds): count=604 first=17151 curr=16698 min=16158 max=40519 avg=19379 std=2421
+2018-12-14 00:00:05.642494: I tensorflow/core/util/stat_summarizer.cc:85] Memory (bytes): count=604 first=9862419 curr=9864143 min=9859775 max=9865467 avg=9.863e+06 std=1343
+2018-12-14 00:00:05.642500: I tensorflow/core/util/stat_summarizer.cc:85] 1037 nodes observed
+2018-12-14 00:00:05.642506: I tensorflow/core/util/stat_summarizer.cc:85]
+2018-12-14 00:00:06.152131: I tensorflow/tools/benchmark/benchmark_model.cc:635] FLOPs estimate: 189.74M
+2018-12-14 00:00:06.152154: I tensorflow/tools/benchmark/benchmark_model.cc:637] FLOPs/second: 15.65B
